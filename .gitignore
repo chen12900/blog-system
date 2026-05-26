@@ -1,0 +1,19 @@
+# Maven
+blog-backend/target/
+blog-backend/data/
+
+# Node
+blog-frontend/node_modules/
+blog-frontend/dist/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven wrapper
+blog-backend/.m2/

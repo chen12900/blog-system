@@ -1,0 +1,12 @@
+#!/bin/bash
+MAVEN_HOME="$HOME/.m2/wrapper/dists/apache-maven-3.9.7"
+if [ ! -f "$MAVEN_HOME/bin/mvn" ]; then
+    echo "Downloading Maven..."
+    mkdir -p "$(dirname "$MAVEN_HOME")"
+    curl -kL -o /tmp/maven.zip "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.7/apache-maven-3.9.7-bin.zip"
+    unzip -qo /tmp/maven.zip -d "$(dirname "$MAVEN_HOME")"
+    rm /tmp/maven.zip
+fi
+export PATH="$MAVEN_HOME/bin:$PATH"
+export MAVEN_OPTS="-Xmx1024m -XX:MaxMetaspaceSize=256m"
+exec mvn "$@"

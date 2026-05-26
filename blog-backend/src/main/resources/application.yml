@@ -1,0 +1,41 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/blog_db;AUTO_SERVER=TRUE;MODE=MySQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+jwt:
+  secret: your-256-bit-secret-key-for-jwt-blog-system-2024
+  expiration: 86400000
+
+---
+# MySQL 配置（切换到此 profile: --spring.profiles.active=mysql）
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
